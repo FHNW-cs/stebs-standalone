@@ -1,0 +1,42 @@
+<DockingManager version="1.3.0">
+    <ResizingPanel ResizeWidth="*" ResizeHeight="*" EffectiveSize="0,0" Orientation="Horizontal">
+        <ResizingPanel ResizeWidth="262" ResizeHeight="*" EffectiveSize="262,1023" Orientation="Vertical">
+            <DockablePane ResizeWidth="0.323651929086605*" ResizeHeight="0.205845431028587*" EffectiveSize="262,327.212100306557" ID="dcbbaa6a-0114-4fb9-9c41-533e71ec1ab6" Anchor="Left" IsAutoHidden="false" />
+            <DockablePane ResizeWidth="0.388315245972232*" ResizeHeight="0.167038941630534*" EffectiveSize="262,394.91660515376" ID="e413f158-d13f-474d-b5b0-6cec61c811a0" Anchor="Left" IsAutoHidden="false" />
+            <DockablePane ResizeWidth="*" ResizeHeight="0.263124291369282*" EffectiveSize="262,1023" ID="3db5cbcb-23a4-4cf9-871f-046d4b6e8cad" Anchor="Left" IsAutoHidden="false" />
+        </ResizingPanel>
+        <ResizingPanel ResizeWidth="*" ResizeHeight="*" EffectiveSize="1354,1023" Orientation="Vertical">
+            <ResizingPanel ResizeWidth="*" ResizeHeight="*" EffectiveSize="1354,727" Orientation="Horizontal">
+                <ResizingPanel ResizeWidth="*" ResizeHeight="*" EffectiveSize="1354,727" Orientation="Vertical">
+                    <DocumentPane IsMain="true" ResizeWidth="*" ResizeHeight="*" EffectiveSize="1354,727">
+                        <DockableContent Name="Architecture" FloatingWindowSize="1022,739" ChildIndex="0" Width="1669.41796325516" Height="726" Anchor="None" State="Document" />
+                    </DocumentPane>
+                </ResizingPanel>
+            </ResizingPanel>
+            <ResizingPanel ResizeWidth="*" ResizeHeight="290" EffectiveSize="1354,290" Orientation="Horizontal">
+                <DockablePane ResizeWidth="0.490222257740266*" ResizeHeight="280" EffectiveSize="660.819603433879,290" ID="e300d434-d093-4679-b04a-5d97864d0657" Anchor="Bottom" IsAutoHidden="false">
+                    <DockableContent Name="RAM" FloatingWindowSize="250,400" ChildIndex="0" Width="244.582036744838" Height="546.310925531621" Anchor="Right" State="Docked" />
+                </DockablePane>
+                <DockablePane ResizeWidth="0.275493202279442*" ResizeHeight="*" EffectiveSize="369.711877459011,290" ID="b189c3f0-e38b-4563-a44b-91f079454530" Anchor="Bottom" IsAutoHidden="false" />
+                <DockablePane ResizeWidth="0.509777742259734*" ResizeHeight="*" EffectiveSize="687.180396566121,290" ID="deb216a7-9232-4c7c-a9bd-cdada09a5cc1" Anchor="Bottom" IsAutoHidden="false">
+                    <DockableContent Name="IOInterrupt" FloatingWindowSize="250,400" ChildIndex="1" Width="262" Height="327.212100306557" Anchor="Left" State="Docked" />
+                </DockablePane>
+            </ResizingPanel>
+        </ResizingPanel>
+        <ResizingPanel ResizeWidth="560" ResizeHeight="*" EffectiveSize="560,1023" Orientation="Vertical">
+            <DockablePane ResizeWidth="0.627212303006307*" ResizeHeight="0.627212303006307*" EffectiveSize="560,637.874912157414" ID="e758c749-6bff-45ae-aab5-741e625e4f82" Anchor="Right" IsAutoHidden="false">
+                <DockableContent Name="AsmCode" FloatingWindowSize="250,400" ChildIndex="0" Width="262" Height="255.777085127738" Anchor="Left" State="Docked" />
+            </DockablePane>
+            <DockablePane ResizeWidth="0.372787696993693*" ResizeHeight="0.372787696993693*" EffectiveSize="560,379.125087842586" ID="46582db5-3b2f-4aeb-9627-bfd45fc97f9d" Anchor="Right" IsAutoHidden="false">
+                <DockableContent Name="Output" FloatingWindowSize="250,400" ChildIndex="1" Width="686" Height="1023" Anchor="Right" State="Docked" />
+            </DockablePane>
+        </ResizingPanel>
+    </ResizingPanel>
+    <Hidden>
+        <DockableContent Name="IOLight" FloatingWindowSize="562,489" ChildIndex="0" Width="262" Height="327.212100306557" Anchor="Left" State="Docked" ContainerPaneID="dcbbaa6a-0114-4fb9-9c41-533e71ec1ab6" />
+        <DockableContent Name="IO7Segment" FloatingWindowSize="177,264" ChildIndex="0" Width="262" Height="394.91660515376" Anchor="Left" State="Docked" ContainerPaneID="e413f158-d13f-474d-b5b0-6cec61c811a0" />
+        <DockableContent Name="IOHeater" FloatingWindowSize="562,489" ChildIndex="0" Width="262" Height="1023" Anchor="Left" State="Docked" ContainerPaneID="3db5cbcb-23a4-4cf9-871f-046d4b6e8cad" />
+        <DockableContent Name="Registers" FloatingWindowSize="250,400" ChildIndex="0" Width="369.711877459011" Height="290" Anchor="Bottom" State="Docked" ContainerPaneID="b189c3f0-e38b-4563-a44b-91f079454530" />
+    </Hidden>
+    <Windows />
+</DockingManager>

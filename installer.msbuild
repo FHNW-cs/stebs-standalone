@@ -1,0 +1,5 @@
+<Project DefaultTargets="Installer" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Installer">
+		<Exec command='"C:\Program Files (x86)\NSIS\makensis.exe" stebs.nsi' /> 
+	</Target>    
+</Project>

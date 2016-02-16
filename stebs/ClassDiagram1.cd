@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Stebs.Model.Alu" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Stebs.Model.Alu.OPS" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Alu.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAAACQAA=</HashCode>
+      <FileName>Model\Alu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.AssemblerHighlightingParser" Collapsed="true">
+    <Position X="4" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgQAAAAIIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\AssemblerHighlightingParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.AssemblerParser" Collapsed="true">
+    <Position X="2.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEFQAAABCEAIhBBgAQEgBAgAiAQAAAgACAAgAAAAAAA=</HashCode>
+      <FileName>Model\AssemblerParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.Bus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\Bus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.3" Collapsed="true" />
+  </Class>
+  <Class Name="Stebs.Model.DataBus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAECAAA=</HashCode>
+      <FileName>Model\DataBus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="Stebs.Model.DecoderEntry" Collapsed="true">
+    <Position X="3.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAECQ=</HashCode>
+      <FileName>Model\DecoderEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.ExcelParser" Collapsed="true">
+    <Position X="2.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAABAAAAAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\ExcelParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.Hint" Collapsed="true">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgEAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Model\Hint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.Hints" Collapsed="true">
+    <Position X="14" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Model\Hints.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.MPMEntry" Collapsed="true">
+    <Position X="5.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAUEAQAAAIigAEAEAAAAAAAAABAgCAgCAIABAAgEUAA=</HashCode>
+      <FileName>Model\MPMEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.Processor" Collapsed="true">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCwBAAAIMgAAAAAAAAAoIQCAAAAABAAACiBYBE=</HashCode>
+      <FileName>Model\Processor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.RAM" Collapsed="true">
+    <Position X="5.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAgAAAAABAAAAAQAAEAAAA=</HashCode>
+      <FileName>Model\RAM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.RecentFile" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\RecentFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.View.ArchitectureWindow" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgBAAAAAAAAIAAABAAAAAAABAAoQA=</HashCode>
+      <FileName>View\ArchitectureWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.View.AsmCodeWindow" Collapsed="true">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEAAAAAAAAABEggACACIAAAEAgAEAAAASABABggQA=</HashCode>
+      <FileName>View\AsmCodeWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.View.IOWrapperWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAABAAAAAAAAAAAAgAAAAQAAAAAAEAAEAAAA=</HashCode>
+      <FileName>View\IOWrapperWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Stebs.View.MainWindow" Collapsed="true">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QlAFAKApJGAACBAgAABAiADhBUgQCADICAAZIBxDsBA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.View.OutputWindow" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAACAAAAAAAAAQAAAAAAAAAAAIQAAAAAAIAFAAAI=</HashCode>
+      <FileName>View\OutputWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.View.RAMWindow" Collapsed="true">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACACQAAAAAAgAAAAAAAAAAAAQAAAoAACAAACAA=</HashCode>
+      <FileName>View\RamWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.View.RegistersWindow" Collapsed="true">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RegistersWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.ViewModel.ByteHelper" Collapsed="true">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAiAAABIAAAAAABAAAAgAABWBkAYGAAEISAAFQAAA=</HashCode>
+      <FileName>ViewModel\ByteHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.ViewModel.IOWindowLoader" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ViewModel\IOWindowLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.ViewModel.ProcessorViewModel" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEgEHmwhrFUBOoCyLaQQKBF8oAGIwVBq4MAQCmeYBM=</HashCode>
+      <FileName>ViewModel\ProcessorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.ViewModel.RegistersViewConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\RegistersViewConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Stebs.ViewModel.ViewModelBase" Collapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Stebs.ViewModel.VisualizationHelper" Collapsed="true">
+    <Position X="12.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAIAAAAAEAAAAAAAAAAAAAAACAQAAA=</HashCode>
+      <FileName>ViewModel\VisualizationHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Stebs.Model.IBus" Collapsed="true">
+    <Position X="8.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\IBus.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

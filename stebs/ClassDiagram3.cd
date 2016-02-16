@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Stebs.Model.Alu" Collapsed="true">
+    <Position X="4.75" Y="4.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Stebs.Model.Alu.OPS" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Alu.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAAACQAA=</HashCode>
+      <FileName>Model\Alu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stebs.Model.Bus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\Bus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Stebs.Model.DataBus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAECAAA=</HashCode>
+      <FileName>Model\DataBus.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ram" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Stebs.Model.Processor" Collapsed="true">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Stebs.Model.Processor.REGISTER" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Processor.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="alu" Type="Stebs.Model.Alu" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="4.562" />
+        <Point X="8.25" Y="5.031" />
+        <Point X="6.25" Y="5.031" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="X" Type="Stebs.Model.Bus" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.188" Y="4" />
+        <Point X="8.188" Y="3.648" />
+        <Point X="6.25" Y="3.648" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.204" Y="-0.211" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Y" Type="Stebs.Model.Bus" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.312" Y="4" />
+        <Point X="8.312" Y="3.418" />
+        <Point X="6.25" Y="3.418" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.193" Y="0.008" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="DATA" Type="Stebs.Model.DataBus">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.225" Y="0.008" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAABCwBAAAIMgAAAAAAAAAoIQCAAAAABAAACiBYBE=</HashCode>
+      <FileName>Model\Processor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="alu" />
+      <Property Name="X" />
+      <Property Name="Y" />
+      <Property Name="DATA" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Stebs.Model.RAM" Collapsed="true">
+    <Position X="2.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAgAAAAABAAAAAQAAEAAAA=</HashCode>
+      <FileName>Model\RAM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Stebs.Model.IBus" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\IBus.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

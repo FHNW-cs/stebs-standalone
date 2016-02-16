@@ -1,0 +1,23 @@
+﻿<TextBox x:Class="RAM.RAMTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RAM"
+    xmlns:a="clr-namespace:System;assembly=mscorlib">
+    <TextBox.ContextMenu>
+        <ContextMenu>
+            <MenuItem Command="Copy" Header="Copy" InputGestureText="Ctrl+C" />
+        </ContextMenu>
+    </TextBox.ContextMenu>
+    <TextBox.CommandBindings>
+        <CommandBinding Command="Copy"  Executed="CopyCommandBinding"/>
+    </TextBox.CommandBindings>
+    <TextBox.Template>
+        <ControlTemplate TargetType="local:RAMTextBox" >
+            <Border BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Name="Bd" SnapsToDevicePixels="True" >
+                <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+            </Border>
+        </ControlTemplate>
+    </TextBox.Template>
+</TextBox>
+
+    

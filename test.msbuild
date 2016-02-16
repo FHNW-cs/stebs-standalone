@@ -1,0 +1,24 @@
+<Project DefaultTargets="Test" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+     
+    <!-- This is needed by MSBuild to locate the Gallio task -->
+    <UsingTask AssemblyFile="C:\Program Files\Gallio\bin\Gallio.MSBuildTasks.dll" TaskName="Gallio" />
+     
+    <!-- Specify the tests assemblies -->
+    <ItemGroup>
+        <TestAssemblies Include="TestProject\bin\Debug\TestProject.dll" />
+    </ItemGroup>
+     
+    <Target Name="Test">
+        <Gallio
+            Files="@(TestAssemblies)"
+            IgnoreFailures="true"
+            ReportDirectory="build\"
+            ReportTypes="html"> 
+            <!-- This tells MSBuild to store the output value of the task's ExitCode property
+                 into the project's ExitCode property -->
+            <Output TaskParameter="ExitCode" PropertyName="ExitCode"/>
+        </Gallio>
+        <Error Text="Tests execution failed" Condition="'$(ExitCode)' != 0" />
+    </Target>
+     
+</Project>

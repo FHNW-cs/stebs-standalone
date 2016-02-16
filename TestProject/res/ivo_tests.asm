@@ -1,0 +1,8 @@
+Fish:
+INC AL
+INC BL
+INC CL
+INC DL
+JMP Fish
+
+END

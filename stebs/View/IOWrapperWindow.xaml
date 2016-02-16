@@ -1,0 +1,8 @@
+﻿<ad:DockableContent 
+        x:Class="Stebs.View.IOWrapperWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+        Height="234" Width="227">
+    <StackPanel Name="panel" />
+</ad:DockableContent>

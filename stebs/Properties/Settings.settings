@@ -1,0 +1,66 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Stebs.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LastFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MicrocodeFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Microcode.xlsx</Value>
+    </Setting>
+    <Setting Name="Speed" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="LayoutFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">res\Layouts\Layout.xml</Value>
+    </Setting>
+    <Setting Name="ZoomArchitecture" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ZoomOutput" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ZoomRegisters" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ZoomRAM" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ZoomCode" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="RecentFileList" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HelpFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\UserGuide_Program.pdf</Value>
+    </Setting>
+    <Setting Name="MicroLayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\MicroLayout.xml</Value>
+    </Setting>
+    <Setting Name="RegistersLayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\RegistersLayout.xml</Value>
+    </Setting>
+    <Setting Name="FloatingLayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\FloatingLayout.xml</Value>
+    </Setting>
+    <Setting Name="InterruptLayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\InterruptLayout.xml</Value>
+    </Setting>
+    <Setting Name="AllLayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\AllLayout.xml</Value>
+    </Setting>
+    <Setting Name="Custom1LayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\Custom1.xml</Value>
+    </Setting>
+    <Setting Name="Custom2LayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\Custom2.xml</Value>
+    </Setting>
+    <Setting Name="Custom3LayoutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Layouts\Custom3.xml</Value>
+    </Setting>
+    <Setting Name="HintsFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">res\Hints_Program.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

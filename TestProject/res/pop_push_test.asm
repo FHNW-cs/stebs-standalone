@@ -1,0 +1,5 @@
+MOV BL,03
+PUSH BL
+POP BL
+
+END

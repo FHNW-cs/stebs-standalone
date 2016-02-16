@@ -1,0 +1,184 @@
+  // The machine code to be copied into the memory.
+  // Jump addresses have to be entered as correct hex numbers.
+  // Test added instructions.
+  //
+  // Calculate r : = m % n
+  // Parameter m is to be set in address 0xFF
+  // Parameter n is to be set in address 0xFE
+  // The result can be found in address 0xFD
+  // This demonstration shows parameter passing etc as a compiler would translate
+  // the following high level language (except user input, output):
+  //   program mod
+  //   global
+  //     proc modulo(in copy m:int, in copy n:int, out ref r:int)
+  //     do
+  //       r init := m;
+  //       while r >= n do
+  //         r := r - n;
+  //       endwhile
+  //     endproc;
+  //
+  //     var m:int;
+  //     var n:int;
+  //     var r:int;
+  //   do
+  //     ? m init;
+  //     ? n init;
+  //     call divide(m, n, r init);
+  //     ! r
+  //   endprogram
+static private int[] machineCode12 = {
+  // Set up stack (save memory space as no init done by machine)
+	   
+    // Alloc(0, 3);            // allocate 3 slots on stack for vars m, n and r
+    // IntLoad(1, 0);          //  load addr(m)
+    // IntInput(2, "m");       //  get input m = 7 and store it at addr(m)
+    // IntLoad(3, 1);          //  load addr(n)
+    // IntInput(4, "n");       //  get input n = 3 and store it at addr(n)
+    ORG,      0xFD,
+    DB,       0x00,       // output value r (to be calculated: r = m % n)
+
+    ORG,      0xFE,
+    DB,       9,        // input value n  (decimal!!) <-----------------
+
+    ORG,      0xFF,
+    DB,       23,       // input value m  (decimal!!) <-----------------
+
+  
+    ORG,      0x00,
+    // init SP and FP
+    MOV_R_C,  BL, 0xFF,   // init BL (in the role of FP)
+    MOV_R_C,  AL, 0xF0,   // init 
+    MOV_R_R,  SP, AL,     //   SP
+
+    // IntLoad(5, 0);          //   load addr(m) 
+    // Deref(6);               //   dereference addr(m) to get m
+    MOV_R_C,  AL, 0xFF,   // intLoad(FF), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,	
+	
+    // IntLoad(7, 1);          //   load addr(n)
+    // Deref(8);               //   dereference addr(n) to get n
+    MOV_R_C,  AL, 0xFE,   // intLoad(FE), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,	
+	
+    // IntLoad(9, 2);          //   load addr(r)
+    MOV_R_C,  AL, 0xFD,   // intLoad(FD)
+    PUSH,     AL,	
+
+    // Call(10, 15);           //  call procedure
+	MOV_R_R,  AL, SP,     // save sp                        // MOV_R_R,   FP, SP     !!!!
+	PUSH,     BL,         // save fp onto stack
+	MOV_R_R,  BL, AL,     // fp := sp_old
+	CALL,     0x30,       // modulo
+
+    // Stop(14);               // done
+    HALT,
+  
+  
+    ORG,      0x30,       // modulo
+    // Enter(15, 0, 0);        //  (sp := fp + 3): protect old fp and return address
+
+    // LoadRel(16, (-3));      //  load address of procedure param m relative to fp
+    // Deref(17);              //  get value of m
+    MOV_R_R,  AL, BL,
+    ADD_R_C,  AL, 0x03,   // loadRel(03), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+
+    // LoadRel(18, (-1));      //  load address of procedure param r relative to fp
+    // Deref(19);              //  get ref(r)
+    MOV_R_R,  AL, BL,
+	ADD_R_C,  AL, 0x01,   // loadRel(01), deref()
+	MOV_R_RI, AL, AL,
+	PUSH,     AL,
+	
+    // Store(20);              //  store: initialise r := m
+    POP,      AL,         // addr
+    POP,      CL,         // value
+    MOV_RI_R, AL, CL,     // r := m
+	
+    //                         // WHILE
+    // LoadRel(21, (-1));      //  load address of procedure param r relative to fp  
+    // Deref(22);              //  get ref(r)
+    MOV_R_R,  AL, BL,
+    ADD_R_C,  AL, 0x01,   // loadRel(01), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+	 
+    // Deref(23);              //  get value of r
+    POP,      AL,
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+	
+    // LoadRel(24, (-2));      //  load address of procedure param n relative to fp
+    // Deref(25);              //  get value of copy n
+    MOV_R_R,  AL, BL,
+	ADD_R_C,  AL, 0x02,   // loadRel(02), deref()
+	MOV_R_RI, AL, AL,
+	PUSH,     AL,
+
+    // IntGE(26);              //  compare r >= n
+    // CondJump(27, 38);       //  if true continue else jump
+    POP,      CL,         // BL := n
+    POP,      AL,         // AL := r
+    CMP_R_R,  AL, CL,     // r - n
+    JS,       0x3C,       // r - n > 0
+	
+    // LoadRel(28, (-1));      //  load address of procedure param r relative to fp
+    // Deref(29);              //  get ref(r)
+    MOV_R_R,  AL, BL,
+    ADD_R_C,  AL, 0x01,   // loadRel(01), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+
+    // vm.Deref(30);              //  get value of r
+    POP,      AL,
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+	
+    // LoadRel(31, (-2));      //  load address of procedure param n relative to fp
+    // Deref(32);              //  get value of n
+    MOV_R_R,  AL, BL,
+    ADD_R_C,  AL, 0x02,   // loadRel(02), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+	
+    // IntSub(33);             //  calculate r - n
+    POP,      CL,         // BL := n
+    POP,      AL,         // AL := r
+    SUB_R_R,  AL, CL,     // AL := r - n
+    PUSH,     AL,
+	
+    // LoadRel(34, (-1));      //  load address of procedure param r relative to fp
+    // Deref(35);              //  get ref(r)
+    MOV_R_R,  AL, BL,
+    ADD_R_C,  AL, 0x01,   // loadRel(01), deref()
+    MOV_R_RI, AL, AL,
+    PUSH,     AL,
+	
+    // Store(36);              //  store:  r := r - n
+    POP,      AL,         // addr
+    POP,      CL,         // value
+    MOV_RI_R, AL, CL,     // r := r - n
+
+    // UncondJump(37, 21);     //  goto while
+    JMP,      0x9F,
+	
+    // 	                       // ENDWHILE
+    // Return(38, 3);          //  (sp := fp - 3)
+    POP,      CL,         // save return addr
+    POP,      BL,         // restore old fp
+	
+    MOV_R_R,  AL, SP,
+    ADD_R_C,  AL, 0x03,   // deallocate 3 bytes
+    MOV_R_R,  SP, AL,     // restore sp
+  
+    PUSH,     CL,         // return
+    RET,                  //   past call
+	
+    // 
+    END,
+  };
+ 

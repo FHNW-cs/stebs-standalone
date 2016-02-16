@@ -1,0 +1,783 @@
+﻿<ad:DockableContent x:Class="Stebs.View.ArchitectureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+        xmlns:my="clr-namespace:Stebs.View.CustomControls"
+        Title="Architecture" Height="750" Width="1000" BorderBrush="Black"
+        ad:Name="Architecture" Loaded="Architecture_Loaded">
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="RegisterStyle" TargetType="Label">
+                <Setter Property="Height"                       Value="30" />
+                <Setter Property="Width"                        Value="50" />
+                <Setter Property="ContentStringFormat"          Value="X2" />
+                <Setter Property="FontSize"                     Value="14" />
+                <Setter Property="BorderBrush"                  Value="Black" />
+                <Setter Property="BorderThickness"              Value="1" />
+                <Setter Property="HorizontalAlignment"          Value="Left" />
+                <Setter Property="VerticalAlignment"            Value="Top" />
+                <Setter Property="HorizontalContentAlignment"   Value="Center" />
+                <Setter Property="VerticalContentAlignment"     Value="Center" />
+            </Style>
+
+            <Style x:Key="ConstantRegisterStyle" TargetType="Label" BasedOn="{StaticResource RegisterStyle}">
+                <Setter Property="Background"                   Value="WhiteSmoke" />
+                <Setter Property="BorderThickness"              Value="2" />
+                <Setter Property="FontWeight"                   Value="Bold" />
+                <Setter Property="FontStyle"                    Value="Italic" />
+            </Style>
+            <Style x:Key="RegisterLabelStyle" TargetType="Label">
+                <Setter Property="Height"               Value="20" />
+                <Setter Property="Width"                Value="50" />
+                <Setter Property="FontSize"             Value="8" />
+                <Setter Property="HorizontalAlignment"  Value="Left" />
+                <Setter Property="VerticalAlignment"    Value="Top" />
+            </Style>
+            <Style x:Key="StdShape" TargetType="Shape" >
+                <Setter Property="Stroke"               Value="Black" />
+                <Setter Property="HorizontalAlignment"  Value="Left" />
+                <Setter Property="VerticalAlignment"    Value="Top" />
+            </Style>
+            <Style x:Key="StdShapeIncomplete" TargetType="Shape"  BasedOn="{StaticResource StdShape}">
+                <Setter Property="StrokeDashArray" Value="2,2" />
+                <Setter Property="Stroke"          Value="red" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0 0 0 1" BorderBrush="Black" Grid.Row="0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Name="grid" Background="White">
+                    <Grid.LayoutTransform>
+                        <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=ScaleSlider,Path=Value}" ScaleY="{Binding ElementName=ScaleSlider,Path=Value}" />
+                    </Grid.LayoutTransform>
+
+                    <!-- DECODER -->
+                    <Label Margin="64,30,0,0" Height="100" Width="250" Content="Opcode Decoder" FontSize="16" BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Padding="0" />
+                    <DataGrid ItemsSource="{Binding DecoderEntries}" SelectedItem="{Binding Path=CurrentDecoderEntry, Mode=OneWay}" Margin="64,50,0,0" Height="80" Width="250" FontSize="11" Name="gridDecoder" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" HeadersVisibility="Column" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding OpCode}" Width="50">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="OPC" ToolTipService.ToolTip="Opcode" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding MPMAddress}" Width="80">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="MPMADDR" ToolTipService.ToolTip="Micro Program Memory Address" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding InstructionType}" Width="*">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="INSTR TYPE" ToolTipService.ToolTip="Instruction Type" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- ALU -->
+                    <my:AluControl Margin="566,75,0,0" Height="110" Width="180" Style="{StaticResource StdShape}" />
+
+                    <Label Margin="601,115,0,0" Height="65" Width="110" Content="ALU" FontSize="16" BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Padding="0" />
+                    <DataGrid ItemsSource="{Binding AluEntries}" MinColumnWidth="42" ToolTip="ALU (arithemtic logic unit)" Margin="601,135,0,0" Height="45" Width="110" FontSize="11" Name="gridALU" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" HeadersVisibility="Column" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="OP" Binding="{Binding Op}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- MICRO PROGRAM MEMORY -->
+                    <Label Margin="281,445,0,0" Height="100" Width="496" Content="Micro Program Memory" FontSize="16" BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Padding="0" />
+                    <DataGrid ItemsSource="{Binding MPMEntries}" SelectedItem="{Binding Path=CurrentMPMEntry, Mode=OneWay}" Margin="281,468,0,0" Height="80"  Width="496" FontSize="11" Name="gridMPM" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" HeadersVisibility="Column" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Addr}" Width="39">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="ADDR" ToolTipService.ToolTip="Microcode address" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Na}" Width="52">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="NA" ToolTipService.ToolTip="Next MIP Address" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Cif}" Width="35">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="CIF" ToolTipService.ToolTip="Clear Interrupt Flag" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Ev}" Width="40">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="EV" ToolTipService.ToolTip="Enable Value Flag" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Crit}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="CRIT" ToolTipService.ToolTip="Flag Criteria" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Val}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="VAL" ToolTipService.ToolTip="Offset, Address or Value" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Af}" Width="35">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="AF" ToolTipService.ToolTip="Affected Flag" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Alu}" Width="35">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="ALU" ToolTipService.ToolTip="ALU Command" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding IoM}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="IO/MEM" ToolTipService.ToolTip="IO Device/Memory" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Src}" Width="Auto">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="SRC" ToolTipService.ToolTip="Register Out" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Dst}" Width="Auto">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="DST" ToolTipService.ToolTip="Register In" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Rw}" Width="*">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="CRL" ToolTipService.ToolTip="Control (Read/Write)" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- REGISTER -->
+                    <Label     Margin="805,98,0,0" Content="Regs" Style="{StaticResource RegisterLabelStyle}" />
+                    <Rectangle Margin="805,115,0,0" Height="490" Width="150" Stroke="Black" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <Color A="255" R="255" G="255" B="230" />
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Margin="825,185,0,0" Height="230" Width="110" Stroke="Black" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <Color A="255" R="255" G="255" B="200" />
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Label Margin="855,120,0,0" Content="SEL" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,135,0,0" Name="lblSEL" ToolTip="Selection of the registers" Content="{Binding SEL}" Background="{Binding BG_SEL}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,185,0,0" Content="AL" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,200,0,0" Name="lblAL" ToolTip="Register AL" Content="{Binding AL}" Background="{Binding BG_AL}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,225,0,0" Content="BL" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,240,0,0" Name="lblBL" ToolTip="Register BL" Content="{Binding BL}" Background="{Binding BG_BL}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,265,0,0" Content="CL" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,280,0,0" Name="lblCL" ToolTip="Register CL" Content="{Binding CL}" Background="{Binding BG_CL}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,305,0,0" Content="DL" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,320,0,0" Name="lblDL" ToolTip="Register DL" Content="{Binding DL}" Background="{Binding BG_DL}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,355,0,0" Content="SP" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,370,0,0" Name="lblSP" ToolTip="Stack pointer" Content="{Binding SP}" Background="{Binding BG_SP}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,425,0,0" Content="IP" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,440,0,0" Name="lblIP" ToolTip="Instruction pointer" Content="{Binding IP}" Background="{Binding BG_IP}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="855,465,0,0" Content="MBR" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="855,480,0,0" Name="lblMBR" ToolTip="Memory buffer register" Content="{Binding MBR}" Background="{Binding BG_MBR}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="835,505,0,0" Content="MAR" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="835,520,0,0" Name="lblMAR" ToolTip="Memory address register" Content="{Binding MAR}" Background="{Binding BG_MAR}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="875,545,0,0" Content="MDR" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="875,560,0,0" Name="lblMDR" ToolTip="Memory data register" Content="{Binding MDR}" Background="{Binding BG_MDR}" Style="{StaticResource RegisterStyle}" />
+
+                    <!-- Other Registers -->
+                    <Rectangle Margin="446,260,0,0" Height="85" Width="119" Style="{StaticResource StdShape}">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <Color A="255" R="255" G="255" B="230" />
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Label     Margin="456,270,0,0" Content="SR" Style="{StaticResource RegisterLabelStyle}" />
+                    <Rectangle Margin="456,285,0,0" Height="50" Width="95" ToolTip="Status register" Style="{StaticResource StdShape}">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <Color A="255" R="255" G="255" B="200" />
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Label Margin="631,219,0,0" Content="RES" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="631,234,0,0" Name="lblRES" ToolTip="Result register of the ALU" Content="{Binding RES}" Background="{Binding BG_RES}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="458,285,0,0" Height="20" Width="15" Content="I" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="461,300,0,0" Height="30" Width="20" Name="lblStatusI" ToolTip="Enable/Disable interrupt flag" Content="{Binding I}" Background="{Binding BG_I}" ContentStringFormat="" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="483,285,0,0" Height="20" Width="15" Content="S" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="486,300,0,0" Height="30" Width="21" Name="lblStatusS" ToolTip="Sign flag" Content="{Binding S}" Background="{Binding BG_S}" ContentStringFormat="" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="503,285,0,0" Height="20" Width="17" Content="O" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="506,300,0,0" Height="30" Width="21" Name="lblStatusO" ToolTip="Overflow flag" Content="{Binding O}" Background="{Binding BG_O}" ContentStringFormat="" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="523,285,0,0" Height="20" Width="15" Content="Z" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="526,300,0,0" Height="30" Width="21" Name="lblStatusZ" ToolTip="Zero flag" Content="{Binding Z}" Background="{Binding BG_Z}" ContentStringFormat="" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="400,85,0,0" Content="IR" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="400,100,0,0" Name="lblIR" ToolTip="Instruction register" Content="{Binding IR}" Background="{Binding BG_IR}" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="160,400,0,0" Content="MIP" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="164,415,0,0" Name="lblMIP" ToolTip="Micro instruction pointer" Content="{Binding MIP}" Background="{Binding BG_MIP}" ContentStringFormat="X3" Style="{StaticResource RegisterStyle}" />
+                    <Label Margin="344,142,0,0" Content="IRF" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="345,157,0,0" Width="30" Name="lblIRF" ToolTip="Interrupt flag" ContentStringFormat="" Content="{Binding IRF}" Background="{Binding BG_IRF}" Style="{StaticResource RegisterStyle}" />
+                    <!-- X-Display -->
+                    <Label Margin="571,11,0,0" Content="X" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="571,26,0,0" Name="lblX" ToolTip="X value" Content="{Binding ALU_X}" Background="{Binding BG_ALU_X}" ContentStringFormat="X2" Style="{StaticResource RegisterStyle}" RenderTransformOrigin="1.04,1.4" />
+                    <!-- Y-Display -->
+                    <Label Margin="691,11,0,0" Content="Y" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="691,26,0,0" Name="lblY" ToolTip="Y value" Content="{Binding ALU_Y}" Background="{Binding BG_ALU_Y}" ContentStringFormat="X2" Style="{StaticResource RegisterStyle}" RenderTransformOrigin="1.04,1.4" />
+
+                    <!-- Constants -->
+                    <Label Margin="93,294,0,0" Width="63" HorizontalContentAlignment="Center" Content="Next" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="191,229,0,0" Content="Decode" Style="{StaticResource RegisterLabelStyle}" Width="40"  >
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Margin="220,294,0,0" Content="Fetch" Style="{StaticResource RegisterLabelStyle}" Width="40"  />
+
+                    <Label Margin="202,195,0,0" Content="Fetch" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="201,210,0,0" Content="000"   Style="{StaticResource ConstantRegisterStyle}" ToolTip="Fetch microcode address" />
+                    <Label Margin="257,195,0,0" Content="INTAddr" Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="257,210,0,0" Content="010"   Style="{StaticResource ConstantRegisterStyle}" ToolTip="Interrupt microcode address" />
+                    <Label Margin="45,665,0,0"  Content="Next"  Style="{StaticResource RegisterLabelStyle}" />
+                    <Label Margin="99,641,0,0"  Content="Branch"  Style="{StaticResource RegisterLabelStyle}" RenderTransformOrigin="0.5,0.5" >
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Margin="45,640,0,0"  Content="001"   Style="{StaticResource ConstantRegisterStyle}" />
+
+                    <!-- TO-ARROWS -->
+                    <my:VerticalLine AutoHide="False" Margin="815,335,0,0" Height="50" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SP,IP,MBR,MAR,MDR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="SP,IP,MBR,MAR,MDR" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="815,330,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="DL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine   AutoHide="False" Margin="815,295,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SEL,AL,BL,CL" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="SEL,AL,BL,CL" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:VerticalLine  AutoHide="False" Margin="815,315,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="DL,SP,IP,MBR,MAR,MDR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="DL,SP,IP,MBR,MAR,MDR" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,290,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="CL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine AutoHide="False" Margin="815,255,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SEL,AL,BL" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="SEL,AL,BL" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,250,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="BL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="815,215,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SEL,AL" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="SEL,AL" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,210,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="AL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine   AutoHide="False" Margin="815,150,0,0" Height="65" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SEL"  />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,145,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SEL" />
+                    </my:HorizontalArrow>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="815,380,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SP" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="815,385,0,0" Height="70" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MDR,MAR,MBR,IP" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR"/>
+                        <my:Rule To="MDR,MAR,MBR,IP" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,450,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="IP" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine AutoHide="False" Margin="815,455,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MDR,MAR,MBR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="MDR,MAR,MBR" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,490,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MBR" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine AutoHide="False" Margin="815,495,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MDR,MAR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="MDR,MAR" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="815,530,0,0" Width="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MAR" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="815,535,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MDR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule To="MDR" Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="815,570,0,0" Width="60" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="MDR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" />
+                        <my:Rule Ev="True" To="MDR" />
+                    </my:HorizontalArrow>
+
+                    <!-- FROM-ARROWS -->
+                    <my:VerticalLine  AutoHide="False" Margin="945,295,0,0" Height="21" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL,CL" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="905,330,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="DL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="945,295,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL,CL" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="905,290,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="CL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine AutoHide="False" Margin="945,255,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="905,250,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="BL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine AutoHide="False" Margin="945,215,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="905,210,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalArrow AutoHide="False" Margin="875,165,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red" />
+
+                    <my:VerticalLine  AutoHide="False" Margin="945,316,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MDR,MAR,MBR,IP,SP,DL" />
+                    </my:VerticalLine>
+
+                    <my:VerticalLine  AutoHide="False" Margin="945,336,0,0" Height="48" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="SP,MBR,MDR,MAR,IP" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False" Margin="905,380,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="SP" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False"  Margin="945,384,0,0" Height="71" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MDR,MAR,MBR,IP" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="905,450,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="IP" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="945,455,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MDR,MAR,MBR" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow  AutoHide="False" Margin="905,490,0,0" Width="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MBR" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="945,495,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MDR,MAR" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False"  Margin="885,530,0,0" Width="60" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MAR" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine  AutoHide="False" Margin="945,535,0,0" Height="40" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MDR" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow AutoHide="False"  Margin="925,570,0,0" Width="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="MDR" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalArrow Margin="855,550,0,0" Height="85" Style="{StaticResource StdShape}" />
+
+                    <my:VerticalArrow Margin="895,590,0,0" Height="65" Style="{StaticResource StdShape}" HeadPos="Both"  HighlightColor="Red">
+                        <my:Rule From="DATA" To="MDR" Rw="R" />
+                        <my:Rule Rw="W" To="MDR" />
+                    </my:VerticalArrow>
+
+                    <!-- Other Arrows -->
+                    <my:HorizontalArrow Margin="315,110,0,0" Width="85" Style="{StaticResource StdShape}" HeadPos="Left" Height="17" />
+
+                    <!-- Opcode < IR -->
+                    <my:VerticalArrow  Margin="420,5,0,0" Height="95" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="IR" />
+                    </my:VerticalArrow>
+
+                    <!-- IR lessthan Y -->
+                    <my:VerticalArrow Margin="500,5,0,0" Height="255" Style="{StaticResource StdShape}" HighlightColor="Red" >
+                        <my:Rule To="SR" />
+                    </my:VerticalArrow>
+
+                    <!-- I < Y -->
+                    <my:VerticalArrow Margin="591,6,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="ALU_X" />
+                    </my:VerticalArrow>
+
+                    <!-- ALU < X -->
+                    <my:VerticalArrow Margin="711,6,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red" >
+                        <my:Rule To="ALU_Y" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow  Margin="591,56,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="RES" Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow Margin="711,56,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="RES" Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND" />
+                    </my:VerticalArrow>
+
+                    <!-- ALU < Y -->
+                    <my:VerticalArrow Margin="651,185,0,0" Height="49" Style="{StaticResource StdShape}" Width="11" HighlightColor="Red">
+                        <my:Rule To="RES" Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" />
+                    </my:VerticalArrow>
+
+                    <!-- RES < ALU -->
+                    <my:VerticalArrow Margin="531,155,0,0" Height="105" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" Af="True" />
+                    </my:VerticalArrow>
+
+                    <!-- (O < ALU) (Z < ALU) (S < ALU) -->
+                    <my:HorizontalLine Margin="535,155,0,0" Width="53"  Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" Af="True" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalLine Margin="471,344,0,0" Height="76" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP" />
+                     </my:VerticalLine>
+
+                    <!--  < O -->
+                    <my:HorizontalLine Margin="258,420,0,0" Width="214" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalLine Margin="259,420,0,0" Height="190" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow Margin="220,606,0,0" Width="40" Style="{StaticResource StdShape}" HeadPos="Left" Height="3" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalLine Margin="464,545,0,0" Height="112" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP" />
+                    </my:VerticalLine>
+
+                    <!--  < CRIT -->
+                    <my:HorizontalLine Margin="205,656,0,0" Width="260" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP" />
+                    </my:HorizontalLine>
+                    <my:VerticalArrow Margin="200,631,0,0" Height="26" Style="{StaticResource StdShape}" HeadPos="Top" Width="13" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP" />
+                    </my:VerticalArrow>
+
+                    <my:Mux Margin="190,585,0,0" Height="50" Width="30" Direction="Left" Style="{StaticResource StdShape}"/>
+                    <Label Margin="190,585,0,0" Height="50"  Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="˂" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Flags Decoder"/>
+                    <my:Mux Margin="49,595,0,0" Width="90" Height="30" Style="{StaticResource StdShape}" />
+                    <Label Margin="83,589,0,0" Content="˄" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+                    <my:HorizontalArrow Margin="134,606,0,0" Width="56" Style="{StaticResource StdShape}" HeadPos="Left" Height="6" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP" />
+                    </my:HorizontalArrow>
+                    <my:VerticalArrow Margin="65,625,0,0" Height="15" Style="{StaticResource StdShape}" HeadPos="Top" HighlightColor="Blue">
+                        <my:Rule Mip="NOJMP,NEXT" />
+                    </my:VerticalArrow>
+                    
+                    <my:VerticalArrow Margin="113,625,0,0" Height="60" Style="{StaticResource StdShape}" HeadPos="Top" HighlightColor="Red">
+                        <my:Rule  Mip="JUMP" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow Margin="61,375,0,0" Height="142" Style="{StaticResource StdShape}" HeadPos="Top" Width="8" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP,NEXT" />
+                    </my:VerticalArrow>
+
+
+                    <my:HorizontalLine Margin="65,517,0,0" Width="29" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP,NEXT" />
+                    </my:HorizontalLine>
+                    <my:VerticalLine Margin="94,516,0,0" Height="79" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP,NEXT" />
+                    </my:VerticalLine>
+
+                    <my:Add Margin="48,345,0,0" Height="30" Width="90" Style="{StaticResource StdShape}" />
+                    <Label Margin="48,337,0,0" Content="+" FontSize="20" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Width="90" VerticalAlignment="Top" ToolTip="Address Adder"/>
+                    <my:VerticalArrow Margin="114,375,0,0" Height="104" Style="{StaticResource StdShape}" HeadPos="Top" Width="13" />
+
+                    <my:HorizontalLine Margin="118,478,0,0" Width="68" Style="{StaticResource StdShape}" />
+                    <my:VerticalArrow Margin="184,445,0,0" Height="33" Style="{StaticResource StdShape}" />
+                    <my:HorizontalArrow Margin="185,473,0,0" Width="96" Style="{StaticResource StdShape}" Height="12" />
+
+                    <my:Mux Margin="139,345,0,0" Height="30"  Width="100" Direction="Bottom" Style="{StaticResource StdShape}" />
+                    <Label Margin="179,339,0,0" Content="˅" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <my:VerticalArrow Margin="184,131,0,0" Height="215" Style="{StaticResource StdShape}" Width="1" HighlightColor="Blue">
+                        <my:Rule Mip="DEC" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow  Margin="221,240,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="FETCH" />
+                    </my:VerticalArrow>
+
+                    <my:Mux Margin="209,260,0,0" Height="30" Width="90" Direction="Bottom" Style="{StaticResource StdShape}" />
+                    <Label Margin="244,254,0,0" Content="˅" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <my:VerticalLine Margin="254,289,0,0" Height="27" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="INT,FETCH"/>
+                    </my:VerticalLine>
+
+                    <my:HorizontalLine Margin="220,315,0,0" Width="35" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="INT,FETCH"/>
+                    </my:HorizontalLine>
+
+                    <my:VerticalArrow  Margin="216,316,0,0" Height="29" Width="12"  Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="INT,FETCH" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow  Margin="277,240,0,0" Height="20" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="INT" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow  Margin="184,375,0,0" Height="40" Width="8" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="NEXT,DEC,JUMP,NOJMP,FETCH,INT" />
+                    </my:VerticalArrow>
+                        
+                    <my:And Margin="316,266,0,0" Height="20" Width="20" ToolTip="AND" Style="{StaticResource StdShape}" />
+                    <my:HorizontalArrow Margin="293,273,0,0" Width="24" HeadPos="Left" Style="{StaticResource StdShape}" Height="12" HeadHeight="6" HeadWidth="6"/>
+                    <my:HorizontalLine  Margin="352,316,0,0" Width="95" Style="{StaticResource StdShape}" />
+                    <my:VerticalLine    Margin="352,281,0,0" Height="36" Style="{StaticResource StdShape}" />
+                    <my:HorizontalArrow Margin="337,278,0,0" Width="16" HeadPos="Left" HeadHeight="6" HeadWidth="6" Style="{StaticResource StdShape}" Height="5" />
+                    <my:HorizontalArrow Margin="337,268,0,0" Width="15" HeadPos="Left" HeadHeight="6" HeadWidth="6" Style="{StaticResource StdShape}" />
+                    <my:VerticalLine    Margin="352,187,0,0" Height="85" Style="{StaticResource StdShape}" />
+
+                    <Label Margin="200,143,0,0" Content="HW Interrupt " Style="{StaticResource RegisterLabelStyle}" Width="58" />
+                    <Button Margin="206,159,0,0" Width="28" Height="28" ToolTip="Fire a single interrupt" Click="HWInterrupt_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Image Source="/Stebs;component/View/res/hwInterrupt.png" />
+                    </Button>
+                    <my:HorizontalArrow Margin="235,169,0,0" Width="110" HeadPos="Right" Style="{StaticResource StdShape}" />
+
+                    <my:VerticalLine Margin="343,362,0,0" Height="84" Style="{StaticResource StdShape}" />
+                       
+
+                    <my:HorizontalArrow Margin="231,356,0,0" Width="113"  HeadPos="Left" Style="{StaticResource StdShape}" />
+                    <my:HorizontalArrow Margin="375,169,0,0" HeadPos="Left" Width="15" Style="{StaticResource StdShape}" HighlightColor="Red">
+                    
+                    </my:HorizontalArrow>
+                    <my:VerticalLine Margin="390,174,0,0" Height="271" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Cif="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalLine  Margin="423,295,0,0" Width="24" Style="{StaticResource StdShape}"  HighlightColor="Red">
+                        <my:Rule From="SR" To="IR" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalArrow Margin="419,131,0,0" Height="164" Style="{StaticResource StdShape}" HeadPos="Top" Width="5" HighlightColor="Red">
+                        <my:Rule From="SR" To="IR" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalLine Margin="93,314,0,0" Height="31" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP,NEXT" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalLine  Margin="93,315,0,0" Width="62" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP,NEXT" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalArrow Margin="150,315,0,0" Height="30" Style="{StaticResource StdShape}" HighlightColor="Blue">
+                        <my:Rule Mip="JUMP,NOJMP,NEXT" />
+                    </my:VerticalArrow>
+
+                    <my:Triangle Margin="10,551,0,0" Height="30" Width="30" Style="{StaticResource StdShape}" />
+                    <my:VerticalLine Margin="425,545,0,0" Height="25" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow Margin="36,564,0,0" Width="390" HeadPos="Left" Height="11" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Ev="True" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalArrow  Margin="775,6,0,0" Height="310" HeadPos="Both" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                        <my:Rule From="RES" To="IR,ALU_X,ALU_Y,SR" />
+                        <my:Rule From="SR"  To="IR,ALU_X,ALU_Y" />
+                        <my:Rule Ev="True"  To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                        
+                    </my:VerticalArrow>
+
+                    <my:HorizontalArrow Margin="780,310,0,0" Width="25" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                        <my:Rule Ev="True" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalArrow>
+
+                    <my:HorizontalLine AutoHide="False" Margin="805,315,0,0" Width="10" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,SR" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                        <my:Rule Ev="True" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine AutoHide="False" Margin="945,316,0,0" Width="36" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalArrow Margin="975,5,0,0" Height="311" HeadPos="Top" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:VerticalArrow>
+
+                    <my:HorizontalArrow Margin="565,310,0,0" Width="92" Style="{StaticResource StdShape}" Height="15" HighlightColor="Red">
+                        <my:Rule From="SR" />
+                    </my:HorizontalArrow>
+
+                    <my:VerticalArrow Margin="651,264,0,0" Height="51" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="RES" />
+                    </my:VerticalArrow>
+
+                    <my:HorizontalLine Margin="654,315,0,0" Width="125" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="RES,SR" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalLine Margin="496,545,0,0" Height="140" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Mip="JUMP" />
+                        <my:Rule Ev="True" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalLine Margin="122,685,0,0" Width="375" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Mip="JUMP" />
+                        <my:Rule Ev="True" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine Margin="25,685,0,0" Width="98" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Ev="True" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalArrow  Margin="20,5,0,0" Height="547" Style="{StaticResource StdShape}" HeadPos="Top" Width="12" HighlightColor="Red">
+                        <my:Rule Ev="True" />
+                    </my:VerticalArrow>
+
+                    <my:VerticalArrow Margin="20,580,0,0" Height="105" Style="{StaticResource StdShape}" HeadPos="Top" Width="13" HighlightColor="Red">
+                        <my:Rule Ev="True" />
+                    </my:VerticalArrow >
+
+                    <!-- AF (FL/IE/OE) -->
+                    <my:VerticalArrow Margin="520,345,0,0" Height="100" Style="{StaticResource StdShape}" HeadPos="Top" HighlightColor="Red">
+                        <my:Rule Af="True" />
+                    </my:VerticalArrow>
+
+                    <!-- ALU -->
+                    <my:VerticalLine Margin="560,419,0,0" Height="26" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalLine Margin="560,420,0,0" Width="190" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" />
+                    </my:HorizontalLine>
+
+                    <my:VerticalLine Margin="750,150,0,0" Height="271" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" />
+                    </my:VerticalLine>
+
+                    <my:HorizontalArrow Margin="726,145,0,0" Width="25" HeadPos="Left" Height="11"  Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Alc="ADD,SUB,MUL,DIV,MOD,OR,XOR,AND,NOT,DEC,INC,SHR,SHL,ROR,ROL" />
+                    </my:HorizontalArrow>
+
+                    <!-- OE/IE -->
+                    <my:VerticalLine Margin="745,432,0,0" Height="13" Style="{StaticResource StdShape}" />
+                    <my:HorizontalArrow Margin="745,428,0,0" Width="60" Style="{StaticResource StdShape}" />
+
+                    <!-- DATA PATHS -->
+                    <Label Margin="46,2,0,0" Height="25" Width="65" Content="DATA PATH" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <my:HorizontalLine Margin="975,5,0,0" Width="20" StrokeThickness="2" Style="{StaticResource StdShape}" />
+                    <my:HorizontalLine Margin="780,5,0,0" Width="200" StrokeThickness="2" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule From="AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine Margin="595,5,0,0" Width="121" StrokeThickness="2" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="ALU_X,SR,IR" From="AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,RES,SR" />
+                        <my:Rule Ev="True" To="ALU_Y,SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine Margin="25,5,0,0" Width="400" StrokeThickness="2" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule Ev="True" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine Margin="10,5,0,0" Width="15" StrokeThickness="2" Style="{StaticResource StdShape}" />
+                    <Label Margin="893,2,0,0" Height="25" Width="67" Content="DATA PATH" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <my:HorizontalLine Margin="716,5,0,0" Width="64" StrokeThickness="2" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SR,IR,ALU_X,ALU_Y" From="SR,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,RES" />
+                        <my:Rule Ev="True" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine Margin="505,5,0,0" Width="92" StrokeThickness="2" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="SR,IR" From="RES,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                        <my:Rule Ev="True" To="ALU_X,ALU_Y,SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR" />
+                    </my:HorizontalLine>
+
+                    <my:HorizontalLine Margin="425,5,0,0" Width="80" StrokeThickness="2" Style="{StaticResource StdShape}" HighlightColor="Red">
+                        <my:Rule To="IR" />
+                        <my:Rule Ev="True" To="SEL,AL,BL,CL,DL,SP,IP,MBR,MAR,MDR,ALU_X,ALU_Y" />
+                    </my:HorizontalLine>
+
+                    <Label Margin="601,615,0,0" Height="25" Width="80" Content="ADDRESS" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <my:HorizontalLine Margin="600,635,0,0" Width="374" StrokeThickness="2" Style="{StaticResource StdShape}" />
+                    <Label Margin="601,635,0,0" Height="25" Width="80" Content="DATA" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <my:HorizontalLine Margin="603,655,0,0" Width="374" StrokeThickness="2" Style="{StaticResource StdShape}" />
+                    <Label Margin="601,655,0,0" Height="25" Width="80" Content="CONTROL" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <my:HorizontalLine Margin="601,675,0,0" Width="374" StrokeThickness="2" Style="{StaticResource StdShape}" />
+                    <my:VerticalLine Margin="744,545,0,0" Height="130" Style="{StaticResource StdShape}" />
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        <Image Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,140,5"  Width="16" Height="16" Source="/Stebs;component/View/res/zoom-out.png" VerticalAlignment="Bottom" />
+        <Image Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,5,5" Width="16" Height="16" Source="/Stebs;component/View/res/zoom-in.png" VerticalAlignment="Bottom" />
+        <Slider Name="ScaleSlider" Value="1" Minimum="0.5" Maximum="2" SmallChange="0.05" LargeChange="0.2" Width="150" Margin="0,0,25,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1">
+            <Slider.LayoutTransform>
+                <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+            </Slider.LayoutTransform>
+        </Slider>
+    </Grid>
+</ad:DockableContent>

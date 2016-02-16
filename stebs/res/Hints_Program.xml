@@ -1,0 +1,27 @@
+<hints>
+	<hint>
+		<id>1</id>
+		<title>The same IO-Device several times</title>
+		<text>Do you know that you can add the same IO-Device twice. You can add a device temporarily at runtime, or copy the DLL file in the pluginfolder to add it permanently.</text>
+	</hint>
+	<hint>
+		<id>2</id>
+		<title>Own IO-Device</title>
+		<text>You can build your own IO-Device, read the PDF in the help folder.</text>
+	</hint>
+	<hint>
+		<id>3</id>
+		<title>Own Assembler commands</title>
+		<text>You can define your own assembler commands, read the PDF in the help folder and extend the Excel table in the res folder.</text>
+	</hint>
+	<hint>
+		<id>4</id>
+		<title>Shortcuts</title>
+		<text>You can use shortcuts for some commands. You can lookup the shotcut in the tooltip of a button.</text>
+	</hint>
+	<hint>
+		<id>5</id>
+		<title>Custom Layouts</title>
+		<text>Did you know that you can define up to three custom layouts. Just click on the buttons Custom 1-3 to save or load a layout. </text>
+	</hint>
+</hints>

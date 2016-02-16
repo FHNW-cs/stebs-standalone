@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{685D7840-B479-4B26-B2C5-D23475B4715B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stebs</RootNamespace>
+    <AssemblyName>stebs</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonDock">
+      <HintPath>..\packages\AvalonDock.Unofficial.1.3.1\lib\net40\AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets">
+      <HintPath>ikvm\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>ikvm\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management">
+      <HintPath>ikvm\IKVM.OpenJDK.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc">
+      <HintPath>ikvm\IKVM.OpenJDK.Misc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <HintPath>ikvm\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools">
+      <HintPath>ikvm\IKVM.OpenJDK.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>ikvm\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>ikvm\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVMassembler">
+      <HintPath>ikvm\IKVMassembler.dll</HintPath>
+    </Reference>
+    <Reference Include="IOInterfaceLib">
+      <HintPath>..\..\..\..\..\Stebs\src\IOInterfaceLib\bin\Release\IOInterfaceLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=2.0.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="RmClass">
+      <HintPath>ikvm\RmClass.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="IO\Invoker.cs" />
+    <Compile Include="IO\Pipeserver.cs" />
+    <Compile Include="Model\AluCommand\AndAluCommand.cs" />
+    <Compile Include="Model\AluCommand\RolAluCommand.cs" />
+    <Compile Include="Model\AluCommand\RorAluCommand.cs" />
+    <Compile Include="Model\AluCommand\ShlAluCommand.cs" />
+    <Compile Include="Model\AluCommand\ShrAluCommand.cs" />
+    <Compile Include="Model\AluCommand\NotAluCommand.cs" />
+    <Compile Include="Model\AluCommand\XOrAluCommand.cs" />
+    <Compile Include="Model\AluCommand\OrAluCommand.cs" />
+    <Compile Include="Model\AluCommand\IncAluCommand.cs" />
+    <Compile Include="Model\AluCommand\DecAluCommand.cs" />
+    <Compile Include="Model\AluCommand\DivAluCommand.cs" />
+    <Compile Include="Model\AluCommand\IAluCommand.cs" />
+    <Compile Include="Model\AluCommand\AddAluCommand.cs" />
+    <Compile Include="Model\AluCommand\ModAluCommand.cs" />
+    <Compile Include="Model\AluCommand\MulAluCommand.cs" />
+    <Compile Include="Model\AluCommand\SubAluCommand.cs" />
+    <Compile Include="Model\AssemblerHighlightingParser.cs" />
+    <Compile Include="Model\AssemblerParser.cs" />
+    <Compile Include="Model\Constraints.cs" />
+    <Compile Include="Model\Hint.cs" />
+    <Compile Include="Model\Hints.cs" />
+    <Compile Include="Model\IProcessorParser.cs" />
+    <Compile Include="Model\InstructionType.cs" />
+    <Compile Include="Model\InstructionTypeParser.cs" />
+    <Compile Include="Model\DESTRegister.cs" />
+    <Compile Include="Model\OperandType.cs" />
+    <Compile Include="Model\OperandTypeFactory.cs" />
+    <Compile Include="Model\ProcessorParserException.cs" />
+    <Compile Include="Model\RAM.cs" />
+    <Compile Include="Model\RawParser.cs" />
+    <Compile Include="Model\RecentFile.cs" />
+    <Compile Include="Model\SRCRegister.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\DecoderEntryViewModel.cs" />
+    <Compile Include="ViewModel\MPMEntryViewModel.cs" />
+    <Compile Include="ViewModel\RegistersViewConverter.cs" />
+    <Compile Include="ViewModel\ProcessorViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Model\Alu.cs" />
+    <Compile Include="Model\Bus.cs" />
+    <Compile Include="Model\DataBus.cs" />
+    <Compile Include="Model\IBus.cs" />
+    <Compile Include="ViewModel\VisualizationHelper.cs" />
+    <Compile Include="View\ArchitectureWindow.xaml.cs">
+      <DependentUpon>ArchitectureWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IOWindowLoader.cs" />
+    <Compile Include="View\AsmCodeWindow.xaml.cs">
+      <DependentUpon>AsmCodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\CopyRegisterCommand.cs" />
+    <Compile Include="View\CustomControls\ArrowBase.cs" />
+    <Compile Include="View\CustomControls\Add.cs" />
+    <Compile Include="View\CustomControls\AluControl.cs" />
+    <Compile Include="View\CustomControls\And.cs" />
+    <Compile Include="View\CustomControls\Rule.cs" />
+    <Compile Include="View\CustomControls\Triangle.cs" />
+    <Compile Include="View\CustomControls\Mux.cs" />
+    <Compile Include="View\CustomControls\VerticalLine.cs" />
+    <Compile Include="View\CustomControls\HorizontalLine.cs" />
+    <Compile Include="View\CustomControls\LineBase.cs" />
+    <Compile Include="View\CustomControls\VerticalArrow.cs" />
+    <Compile Include="View\CustomControls\HorizontalArrow.cs" />
+    <Compile Include="ViewModel\ByteHelper.cs" />
+    <Compile Include="Model\DecoderEntry.cs" />
+    <Compile Include="View\IOutputWindow.cs" />
+    <Compile Include="View\IOWrapperWindow.xaml.cs">
+      <DependentUpon>IOWrapperWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RamWindow.xaml.cs">
+      <DependentUpon>RamWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistersWindow.xaml.cs">
+      <DependentUpon>RegistersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MPMEntry.cs" />
+    <Compile Include="Model\Processor.cs" />
+    <Compile Include="View\OutputWindow.xaml.cs">
+      <DependentUpon>OutputWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\ArchitectureWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AsmCodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IOWrapperWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RamWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RegistersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\OutputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram3.cd" />
+    <Content Include="examples\display.asm" />
+    <Content Include="examples\heater.asm" />
+    <Content Include="examples\trafficLights.asm" />
+    <Content Include="Microsoft.Windows.Shell.dll" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="plugin\IOInterruptLib.dll" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="res\INSTRUCTION.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\ROM1.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\ROM2.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\UserGuide_Program.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\cpu.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TextBoxes\TextBoxes.csproj">
+      <Project>{0EB716C9-8CC0-4C5A-ADB7-445FCE269529}</Project>
+      <Name>TextBoxes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\res\default.png" />
+    <Resource Include="View\res\layout_L.png" />
+    <Resource Include="View\res\layout_1.png" />
+    <Resource Include="View\res\layout_2.png" />
+    <Resource Include="View\res\layout_3.png" />
+    <Resource Include="View\res\media-playback-start-3_32.png" />
+    <Resource Include="View\res\media-playback-restart-3.png" />
+    <Resource Include="View\res\media-playback-pause-3.png" />
+    <Resource Include="View\res\media-playback-start-3_16.png" />
+    <None Include="res\Hints_Program.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="View\res\layout_A.png" />
+    <Resource Include="View\res\layout_F.png" />
+    <Resource Include="View\res\layout_I.png" />
+    <Resource Include="View\res\layout_M.png" />
+    <Resource Include="View\res\layout_R.png" />
+    <None Include="res\Layouts\AllLayout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\Layouts\InterruptLayout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="plugin\IOHeaterLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="plugin\IOLightLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="plugin\IOSegmentLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\Layouts\FloatingLayout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\Layouts\Layout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\Layouts\MicroLayout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\Layouts\RegistersLayout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="View\res\zoom-in.png" />
+    <Resource Include="View\res\zoom-out.png" />
+    <Resource Include="View\res\quickopen.png" />
+    <Resource Include="View\res\hwInterrupt.png" />
+    <Resource Include="View\res\help-3.png" />
+    <Resource Include="View\res\help-about-3.png" />
+    <Resource Include="View\res\help-hint.png" />
+    <Resource Include="View\res\edit-add-2.png" />
+    <Resource Include="View\res\blockdevice-3.png" />
+    <Resource Include="View\res\run-build-2.png" />
+    <Resource Include="View\res\system-run-4.png" />
+    <Resource Include="View\res\list-add-2.png" />
+    <Resource Include="View\res\list-remove-2.png" />
+    <Resource Include="View\res\edit.png" />
+    <Resource Include="View\res\view-list-text-4.png" />
+    <Resource Include="View\res\cpu.png" />
+    <Resource Include="View\res\application-exit-4.png" />
+    <Resource Include="View\res\document-new-7.png" />
+    <Resource Include="View\res\document-open-2.png" />
+    <Resource Include="View\res\document-save-5.png" />
+    <Resource Include="View\res\document-save-as-5.png" />
+    <Resource Include="View\res\go-home-5.png" />
+    <Resource Include="View\res\go-last-2.png" />
+    <Resource Include="View\res\go-last-4.png" />
+    <Resource Include="View\res\go-next-7.png" />
+    <Resource Include="View\res\memory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
