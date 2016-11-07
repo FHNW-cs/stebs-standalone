@@ -87,9 +87,6 @@
     <Reference Include="IKVMassembler">
       <HintPath>ikvm\IKVMassembler.dll</HintPath>
     </Reference>
-    <Reference Include="IOInterfaceLib">
-      <HintPath>..\..\..\..\..\Stebs\src\IOInterfaceLib\bin\Release\IOInterfaceLib.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Microsoft.Windows.Shell.dll</HintPath>
@@ -99,9 +96,9 @@
       <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
-    <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="RmClass">
-      <HintPath>ikvm\RmClass.dll</HintPath>
+    <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -272,7 +269,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <None Include="plugin\IOInterruptLib.dll" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -295,6 +291,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IOInterfaceLib\IOInterfaceLib.csproj">
+      <Project>{fc38b57a-1332-4cd9-bb28-1f6dfe682416}</Project>
+      <Name>IOInterfaceLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TextBoxes\TextBoxes.csproj">
       <Project>{0EB716C9-8CC0-4C5A-ADB7-445FCE269529}</Project>
       <Name>TextBoxes</Name>
@@ -322,15 +322,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="res\Layouts\InterruptLayout.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="plugin\IOHeaterLib.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="plugin\IOLightLib.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="plugin\IOSegmentLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="res\Layouts\FloatingLayout.xml">
@@ -373,12 +364,13 @@
     <Resource Include="View\res\memory.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="plugin\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 und x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
