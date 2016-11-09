@@ -1,13 +1,13 @@
 ﻿namespace Stebs.Model
 {
-    using MbUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Rhino.Mocks;
     using Stebs.View;
     using Stebs.ViewModel;
     using System;
     using System.IO;
 
-    [TestFixture]
+    [TestClass]
     class ASMFileTest
     {
         private AssemblerParser parser;
@@ -15,7 +15,7 @@
         private MockRepository mockRepo;
         private IOutputWindow outWindow;
 
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             Processor processor = GetProcessorParser().Parse();
@@ -45,49 +45,49 @@
             Assert.AreEqual(expected, parser.MachineCode);
         }
 
-        [Test]
+        [TestMethod]
         public void TestMultipy()
         {
             TestBase(TestProject.Properties.Resources.multiply,
                      TestProject.Properties.Resources.multiply_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void TrafficLightASMTest()
         {
             TestBase(TestProject.Properties.Resources.tLight,
                      TestProject.Properties.Resources.tLight_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void FirstAsmTest()
         {
             TestBase(TestProject.Properties.Resources.first,
                      TestProject.Properties.Resources.first_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void TestsASMTest()
         {
             TestBase(TestProject.Properties.Resources.tests,
                      TestProject.Properties.Resources.tests_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void IncJmpASMTest()
         {
             TestBase(TestProject.Properties.Resources.incJmp,
                      TestProject.Properties.Resources.incJmp_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void CliStiASMTest()
         {
             TestBase(TestProject.Properties.Resources.cliSti,
                      TestProject.Properties.Resources.cliSti_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void BubbleSort01ASMTst()
         {
             TestBase(
@@ -95,35 +95,35 @@
                 TestProject.Properties.Resources.BubbleSortTst01_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void SwIntASMTest()
         {
             TestBase(TestProject.Properties.Resources.swInt,
                      TestProject.Properties.Resources.swInt_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void MovASMTest()
         {
             TestBase(TestProject.Properties.Resources.move,
                      TestProject.Properties.Resources.move_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void ProcASMTest()
         {
             TestBase(TestProject.Properties.Resources.proc,
                      TestProject.Properties.Resources.proc_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void ArithmeticsASMTest()
         {
             TestBase(TestProject.Properties.Resources.arithmetics,
                      TestProject.Properties.Resources.arithmetics_bin);
         }
 
-        [Test]
+        [TestMethod]
         
         public void HwIntASMTest()
         {
@@ -132,63 +132,63 @@
         }
 
 
-        [Test]
+        [TestMethod]
         public void CallTestASMTest()
         {
             TestBase(TestProject.Properties.Resources.call_test,
                      TestProject.Properties.Resources.call_test_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void CallDemoASMTest()
         {
             TestBase(TestProject.Properties.Resources.callDemo,
                      TestProject.Properties.Resources.callDemo_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void ParamASMTest()
         {
             TestBase(TestProject.Properties.Resources.param,
                      TestProject.Properties.Resources.param_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void SevSegASMTest()
         {
             TestBase(TestProject.Properties.Resources.sevSeg,
                      TestProject.Properties.Resources.sevSeg_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void TLight99ASMTest()
         {
             TestBase(TestProject.Properties.Resources.tLight99,
                      TestProject.Properties.Resources.tLight99_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void HeatCoolASMTest()
         {
             TestBase(TestProject.Properties.Resources.heatCool,
                      TestProject.Properties.Resources.heatCool_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void CompilerExampleASMTest()
         {
             TestBase(TestProject.Properties.Resources.compilerExample,
                      TestProject.Properties.Resources.compilerExample_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void IntTestASMTest()
         {
             TestBase(TestProject.Properties.Resources.int_test,
                      TestProject.Properties.Resources.int_test_bin);
         }
 
-        [Test]
+        [TestMethod]
         
         public void DemoASMTest()
         {
@@ -196,21 +196,21 @@
                 TestProject.Properties.Resources.demo_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void CompareASMTest()
         {
             TestBase(TestProject.Properties.Resources.compare,
                      TestProject.Properties.Resources.compare_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void IntsASMTest()
         {
             TestBase(TestProject.Properties.Resources.ints,
                      TestProject.Properties.Resources.ints_bin);
         }
 
-        [Test]
+        [TestMethod]
         
         public void InstructionsASMTest()
         {
@@ -218,14 +218,14 @@
                      TestProject.Properties.Resources.instructions_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void JsJnsASMTest()
         {
             TestBase(TestProject.Properties.Resources.jsJns,
                      TestProject.Properties.Resources.jsJns_bin);
         }
 
-        [Test]
+        [TestMethod]
         
         public void MovesASMTest()
         {
@@ -233,84 +233,84 @@
                      TestProject.Properties.Resources.moves_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void PushPopASMTest()
         {
             TestBase(TestProject.Properties.Resources.PUSH_POP,
                      TestProject.Properties.Resources.PUSH_POP_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void LogicASMTest()
         {
             TestBase(TestProject.Properties.Resources.logic,
                      TestProject.Properties.Resources.logic_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void StiEtstASMTest()
         {
             TestBase(TestProject.Properties.Resources.sti_etst,
                      TestProject.Properties.Resources.sti_etst_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void MovTestASMTest()
         {
             TestBase(TestProject.Properties.Resources.mov_test,
                      TestProject.Properties.Resources.mov_test_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void MultitaskerASMTest()
         {
             TestBase(TestProject.Properties.Resources.multitasker,
                      TestProject.Properties.Resources.multitasker_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void JzJnzASMTest()
         {
             TestBase(TestProject.Properties.Resources.jzJnz,
                      TestProject.Properties.Resources.jzJnz_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void JumpTestASMTest()
         {
             TestBase(TestProject.Properties.Resources.JumpTest,
                      TestProject.Properties.Resources.JumpTest_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void MeineTestsASMTest()
         {
             TestBase(TestProject.Properties.Resources.MeineTests,
                      TestProject.Properties.Resources.MeineTests_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void StepperASMTest()
         {
             TestBase(TestProject.Properties.Resources.stepper,
                      TestProject.Properties.Resources.stepper_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void StackCrashASMTest()
         {
             TestBase(TestProject.Properties.Resources.stackCrash,
                      TestProject.Properties.Resources.stackCrash_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void  MeinSyntaxHighlighterASMTest()
         {
             TestBase(TestProject.Properties.Resources.MeinSyntaxHighlightingText,
                      TestProject.Properties.Resources.MeinSyntaxHighlightingText_bin);
         }
 
-        [Test]
+        [TestMethod]
         
         public void MazeBinASMTest()
         {
@@ -318,49 +318,49 @@
                      TestProject.Properties.Resources.maze_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void Multitasker2ASMTest()
         {
             TestBase(TestProject.Properties.Resources.multitasker2,
                      TestProject.Properties.Resources.multitasker2_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void SwapNibblesASMTest()
         {
             TestBase(TestProject.Properties.Resources.swapNnibbles,
                      TestProject.Properties.Resources.swapNnibbles_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void PopPushTestASMTest()
         {
             TestBase(TestProject.Properties.Resources.pop_push_test,
                      TestProject.Properties.Resources.pop_push_test_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void LiftASMTest()
         {
             TestBase(TestProject.Properties.Resources.lift,
                      TestProject.Properties.Resources.lift_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void SSegHwASMTest()
         {
             TestBase(TestProject.Properties.Resources.ssegHw,
                      TestProject.Properties.Resources.ssegHw_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void IvoTestASMTest()
         {
             TestBase(TestProject.Properties.Resources.ivo_tests,
                      TestProject.Properties.Resources.ivo_tests_bin);
         }
 
-        [Test]
+        [TestMethod]
         public void JoJnoASMTest()
         {
             TestBase(TestProject.Properties.Resources.joJno,

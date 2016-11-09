@@ -1,11 +1,11 @@
 ﻿namespace Stebs.ViewModel
 {
-    using MbUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Tests class to check the functionality of the ByteHelper
     /// </summary>
-    [TestFixture]
+    [TestClass]
     class ByteHelperTest
     {
         
@@ -13,7 +13,7 @@
         /// Tests to ensure that the evaluation of a string to a possible
         /// hex value works correctly.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestIsHex()
         {
             Assert.IsTrue(ByteHelper.IsHexValue("FF"));
