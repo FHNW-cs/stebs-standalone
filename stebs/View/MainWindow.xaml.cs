@@ -4,7 +4,7 @@
     using System.Windows.Media.Imaging;
     using AvalonDock;
     using Microsoft.Win32;
-    using Microsoft.Windows.Controls.Ribbon;
+    using System.Windows.Controls.Ribbon;
     using System.IO;
     using Stebs.ViewModel;
     using Stebs.Model;
@@ -25,7 +25,7 @@
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Microsoft.Windows.Controls.Ribbon.RibbonWindow {
+    public partial class MainWindow : Window {
         /// <summary>
         /// The window which displays the RAM values
         /// </summary>
