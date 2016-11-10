@@ -98,6 +98,7 @@ Section "stebs (required)" SEC_ST
 	file "stebs\bin\Release\stebs.exe.config"
 	file "stebs\bin\Release\NLog.config"
 	file "stebs\bin\Release\*.dll"
+	file "stebs\plugin\readme.txt"
 	file /nonfatal /r "stebs\bin\Release\plugin\*.dll"
 	file /r "stebs\bin\Release\res"
 
@@ -140,7 +141,7 @@ SectionEnd
 Section "examples" SEC_SA
     SectionIn 1
     SetOutPath $INSTDIR\examples
-    file /nonfatal /r "stebs\bin\Release\examples\*"
+    file /nonfatal /r "stebs\examples\*"
 SectionEnd
 
 Section /o "desktop shortcut" SEC_SC

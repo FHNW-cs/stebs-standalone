@@ -345,7 +345,6 @@
     <Content Include="examples\display.asm" />
     <Content Include="examples\heater.asm" />
     <Content Include="examples\trafficLights.asm" />
-    <Content Include="Microsoft.Windows.Shell.dll" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
