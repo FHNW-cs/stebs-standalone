@@ -56,6 +56,9 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cpu.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AvalonDock">
       <HintPath>..\packages\AvalonDock.Unofficial.1.3.1\lib\net40\AvalonDock.dll</HintPath>
@@ -342,6 +345,7 @@
     </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram3.cd" />
+    <Resource Include="cpu.ico" />
     <Content Include="examples\display.asm" />
     <Content Include="examples\heater.asm" />
     <Content Include="examples\trafficLights.asm" />

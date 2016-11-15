@@ -98,12 +98,11 @@ Section "stebs (required)" SEC_ST
 	file "stebs\bin\Release\stebs.exe.config"
 	file "stebs\bin\Release\NLog.config"
 	file "stebs\bin\Release\*.dll"
-	file "stebs\plugin\readme.txt"
-	file /nonfatal /r "stebs\bin\Release\plugin\*.dll"
 	file /r "stebs\bin\Release\res"
 
 	# Copy plugin DLLs
 	setOutPath "$INSTDIR\plugin"
+	file "stebs\plugin\readme.txt"
 	file /x "IOInterfaceLib.dll" "IOInterruptLib\bin\Release\*.dll"
 	file /x "IOInterfaceLib.dll" "IOHeaterLib\bin\Release\*.dll"
 	file /x "IOInterfaceLib.dll" "IOKeyboardLib\bin\Release\*.dll"
