@@ -110,6 +110,9 @@ Section "stebs (required)" SEC_ST
 	file /x "IOInterfaceLib.dll" "IOSegmentLib\bin\Release\*.dll"
 	file /x "IOInterfaceLib.dll" "IOWatchLib\bin\Release\*.dll"
 
+	# required, or shortcut will have wrong work directory
+	setOutPath $INSTDIR
+
 	# Uninstaller - See function un.onInit and section "uninstall" for configuration
 	writeUninstaller "$INSTDIR\uninstall.exe"
 
