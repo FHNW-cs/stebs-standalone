@@ -4,13 +4,31 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
+/*
+ * Project Manager
+ * ===============
+ * 
+ * Ruedi Müller
+ * 
+ * Contributors
+ * ============
+ * 
+ * Ivo Nussbaumer
+ * Thomas Schilling
+ * Josiane Manera
+ * Jurij Chamin
+ * Nicolas Weber
+ * Roman Holzner
+ * 
+ */
+
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle ("stebs")]
 [assembly: AssemblyDescription ("student training eight bit simulator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("FHNW; Ivo Nussbaumer, Thomas Schilling; Josiane Manera, Jurij Chamin, Nicolas Weber, Roman Holzner; Ruedi Müller")]
+[assembly: AssemblyCompany("FHNW")]
 [assembly: AssemblyProduct ("stebs")]
 [assembly: AssemblyCopyright("Copyright © FHNW 2015")]
 [assembly: AssemblyTrademark("")]

@@ -1,24 +1,23 @@
 ﻿namespace TestProject
 {
     using System;
-    using MbUnit.Framework;
     using Stebs.Model;
     using Stebs.ViewModel;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
-    [TestFixture]
+    [TestClass]
     public class ProcessorTest
     {
         private Processor processor;
         private Alu alu;
 
-        [SetUp]
+        [TestInitialize]
         public void ClassInit() {
             processor = new Processor();
             alu = new Alu(processor);
         }
         
-        [Test]
+        [TestMethod]
         public void TestADD() {
             alu.X = "01000000".BinToByte();
             alu.Y =  "00000001".BinToByte();
@@ -54,7 +53,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestSUB() {
             alu.X =  "01111111".BinToByte();
             alu.Y =  "01111111".BinToByte();
@@ -89,7 +88,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestMUL() {
             alu.X =  "00000000".BinToByte();
             alu.Y =  "00000000".BinToByte();
@@ -116,7 +115,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestDIV() {
             alu.X =  "00000010".BinToByte();
             alu.Y =  "00000010".BinToByte();
@@ -126,7 +125,7 @@
             Assert.AreEqual(false, processor.O);
             Assert.AreEqual(false, processor.Z);
         }
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(DivideByZeroException))]
         public void TestDIVException() {
             alu.X =  "00000001".BinToByte();
@@ -134,7 +133,7 @@
             alu.Execute(Alu.Cmd.DIV, true);
         }
 
-        [Test]
+        [TestMethod]
         public void TestMOD() {
             alu.X =  "00000010".BinToByte();
             alu.Y =  "00000010".BinToByte();
@@ -145,7 +144,7 @@
             Assert.AreEqual(true, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(DivideByZeroException))]
         public void TestMODException() {
             alu.X =  "00000001".BinToByte();
@@ -153,7 +152,7 @@
             alu.Execute(Alu.Cmd.MOD, true);
         }
 
-        [Test]
+        [TestMethod]
         public void TestDEC() {
             alu.X =  "00000001".BinToByte();
             alu.Execute(Alu.Cmd.DEC, true);
@@ -170,7 +169,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestINC() {
             alu.X =  "00000000".BinToByte();
             alu.Execute(Alu.Cmd.INC, true);
@@ -187,7 +186,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestOR() {
             alu.X =  "10101010".BinToByte();
             alu.Y =  "01010101".BinToByte();
@@ -198,7 +197,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestXOR() {
             alu.X =  "10001001".BinToByte();
             alu.Y =  "11011101".BinToByte();
@@ -209,7 +208,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestNOT() {
             alu.X =  "10010011".BinToByte();
             alu.Execute(Alu.Cmd.NOT, true);
@@ -219,7 +218,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestAND() {
             alu.X =  "11110000".BinToByte();
             alu.Y =  "00110011".BinToByte();
@@ -230,7 +229,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestSHR() {
             alu.X =  "10010011".BinToByte();
             alu.Execute(Alu.Cmd.SHR, true);
@@ -240,7 +239,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestSHL() {
             alu.X =  "10010011".BinToByte();
             alu.Execute(Alu.Cmd.SHL, true);
@@ -250,7 +249,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestROR() {
             alu.X =  "10010011".BinToByte();
             alu.Execute(Alu.Cmd.ROR, true);
@@ -260,7 +259,7 @@
             Assert.AreEqual(false, processor.Z);
         }
 
-        [Test]
+        [TestMethod]
         public void TestROL() {
             alu.X =  "10010011".BinToByte();
             alu.Execute(Alu.Cmd.ROL, true);

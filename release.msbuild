@@ -1,0 +1,10 @@
+<Project DefaultTargets="BuildRelease" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <Target Name="BuildRelease">
+        <ItemGroup>
+            <SolutionToBuild Include="stebs.sln" />
+        </ItemGroup>
+        <MSBuild Projects="@(SolutionToBuild)" Properties="Configuration=Release" /> 
+    </Target>
+
+</Project>

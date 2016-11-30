@@ -87,16 +87,31 @@ FunctionEnd
 
 
 Section "stebs (required)" SEC_ST
-    SectionIn RO
-  
+	SectionIn RO
+
 	# Files for the install directory - to build the installer, these should be in
 	# the same directory as the install script (this file)
 	setOutPath $INSTDIR
 
 	# Files added here should be removed by the uninstaller (see section "uninstall")
-	file /x *.log /x *.pdb "stebs\bin\Release\*.*"
-	file /r "stebs\bin\Release\plugin"
+	file "stebs\bin\Release\stebs.exe"
+	file "stebs\bin\Release\stebs.exe.config"
+	file "stebs\bin\Release\NLog.config"
+	file "stebs\bin\Release\*.dll"
 	file /r "stebs\bin\Release\res"
+
+	# Copy plugin DLLs
+	setOutPath "$INSTDIR\plugin"
+	file "stebs\plugin\readme.txt"
+	file /x "IOInterfaceLib.dll" "IOInterruptLib\bin\Release\*.dll"
+	file /x "IOInterfaceLib.dll" "IOHeaterLib\bin\Release\*.dll"
+	file /x "IOInterfaceLib.dll" "IOKeyboardLib\bin\Release\*.dll"
+	file /x "IOInterfaceLib.dll" "IOLightLib\bin\Release\*.dll"
+	file /x "IOInterfaceLib.dll" "IOSegmentLib\bin\Release\*.dll"
+	file /x "IOInterfaceLib.dll" "IOWatchLib\bin\Release\*.dll"
+
+	# required, or shortcut will have wrong work directory
+	setOutPath $INSTDIR
 
 	# Uninstaller - See function un.onInit and section "uninstall" for configuration
 	writeUninstaller "$INSTDIR\uninstall.exe"
@@ -128,7 +143,7 @@ SectionEnd
 Section "examples" SEC_SA
     SectionIn 1
     SetOutPath $INSTDIR\examples
-    file /r "stebs\bin\Release\examples\*"
+    file /nonfatal /r "stebs\examples\*"
 SectionEnd
 
 Section /o "desktop shortcut" SEC_SC

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MbUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stebs.Model;
 using Stebs.ViewModel;
 using Rhino.Mocks;
@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Stebs.Model
 {
-    [TestFixture]
+    [TestClass]
     class AssemblerParserTest
     {
         private AssemblerParser parser;
@@ -19,7 +19,7 @@ namespace Stebs.Model
         private MockRepository mockRepo;
         private IOutputWindow outWindow;
 
-        [SetUp]
+        [TestInitialize]
         public void Setup() {
             mockRepo = new MockRepository();
             model = mockRepo.DynamicMock<ProcessorViewModel>(GetProcessorParser().Parse());
@@ -30,7 +30,7 @@ namespace Stebs.Model
         /// <summary>
         /// Successfully parse something that has an end at the end of the soruce code
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestEndExisits()
         {
             model.Expect(x => x.Reset());
@@ -51,7 +51,7 @@ namespace Stebs.Model
         /// <summary>
         /// Tests that an error happens if there's no end at all(even no label that is equal)
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestNoEnd() {
             model.Expect(x => x.Reset());
             StringBuilder builder = new StringBuilder();
@@ -76,7 +76,7 @@ namespace Stebs.Model
         /// Test that a label that contains the expression "End" does not influence the
         /// error message.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelLikeEnd()
         {
             model.Expect(x => x.Reset());
@@ -125,7 +125,7 @@ namespace Stebs.Model
         /// <summary>
         /// Tests that an unknown instruction is correctly detected
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestUnknownInstruction()
         {
             model.Expect(x => x.Reset());
@@ -148,7 +148,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #3 Missing comma between parameters
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestCommaBetweenParameters()
         {
             model.Expect(x => x.Reset());
@@ -173,7 +173,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #4 Missing comma between parameters with indirect addressing(type read)
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestCommaBetweenParameterWithIndirectAddressingRead()
         {
             model.Expect(x => x.Reset());
@@ -198,7 +198,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #4 Missing comma between parameters with indirect addressing(type write)
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestCommaBetweenParameterWithIndirectAddressingWrite()
         {
             model.Expect(x => x.Reset());
@@ -223,7 +223,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #5 Missing comma between parameters with an illegal parameter
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestCommaBetweenIllegalParameters()
         {
             model.Expect(x => x.Reset());
@@ -248,7 +248,7 @@ namespace Stebs.Model
         /// <summary>
         /// Test illegal parameter
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestIllegalParameters()
         {
             model.Expect(x => x.Reset());
@@ -273,7 +273,7 @@ namespace Stebs.Model
         /// <summary>
         /// Tests Register Indirect Addressing
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestRegisterIndirectAddressing()
         {
             model.Expect(x => x.Reset());
@@ -297,7 +297,7 @@ namespace Stebs.Model
         /// <summary>
         /// Test Nothing to assemble. Empty code
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestNothingToAssemble()
         {
             model.Expect(x => x.Reset());
@@ -323,7 +323,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #23 Expected Register or Number
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestExpectedRegisterOrNumber()
         {
             model.Expect(x => x.Reset());
@@ -349,7 +349,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #23 Expected Register or Number
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestExpectedRegisterOrNumberWithAddressRegister()
         {
             model.Expect(x => x.Reset());
@@ -371,7 +371,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #23 Expected Register or Number
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestExpectedRegisterOrNumberWithAddressNumber()
         {
             model.Expect(x => x.Reset());
@@ -394,7 +394,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #23 Expected Register or Number
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestExpectedRegisterOrNumberWithAdress()
         {
             model.Expect(x => x.Reset());
@@ -417,7 +417,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #23 Expected Register or Number
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestExpectedRegisterOrNumberWithNumber()
         {
             model.Expect(x => x.Reset());
@@ -441,7 +441,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #17 Jump cannot exceed -127..+128
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestTooFarPositiveJump()
         {
             model.Expect(x => x.Reset());
@@ -491,7 +491,7 @@ namespace Stebs.Model
         }
 
 
-        [Test]
+        [TestMethod]
         public void TestPositiveJump()
         {
             model.Expect(x => x.Reset());
@@ -514,7 +514,7 @@ namespace Stebs.Model
 
 
 
-        [Test]
+        [TestMethod]
         public void TestNegativeJump()
         {
             model.Expect(x => x.Reset());
@@ -539,7 +539,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #17 Jump cannot exceed -127..+128
         /// </summary>
-        [Test]
+        [TestMethod]
         [Ignore]
         public void TestMaxNegativeJump()
         {
@@ -568,7 +568,7 @@ namespace Stebs.Model
         /// <summary>
         /// Checklabel(no ":" at the end)
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestJumpToNotValidLabel()
         {
             model.Expect(x => x.Reset());
@@ -596,7 +596,7 @@ namespace Stebs.Model
         /// <summary>
         /// Jump to non-existent Label
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestJumpToNotExistingLabel()
         {
             model.Expect(x => x.Reset());
@@ -624,7 +624,7 @@ namespace Stebs.Model
         /// <summary>
         /// Test Used RAM
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestUsedRAM()
         {
             model.Expect(x => x.Reset());
@@ -653,7 +653,7 @@ namespace Stebs.Model
         /// <summary>
         /// Test End of RAM
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestEORAM()
         {
             model.Expect(x => x.Reset());
@@ -678,7 +678,7 @@ namespace Stebs.Model
         }
 
 
-        [Test]
+        [TestMethod]
         public void TestIncNotRegister()
         {
             model.Expect(x => x.Reset());
@@ -703,7 +703,7 @@ namespace Stebs.Model
         }
 
 
-        [Test]
+        [TestMethod]
         public void TestIncRegister()
         {
             model.Expect(x => x.Reset());
@@ -728,7 +728,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #15 The label should begin with a character
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelStartsWithNumber()
         {
             model.Expect(x => x.Reset());
@@ -753,7 +753,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #12 Dublicate labels are not allowed
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelDublicateLabels()
         {
             model.Expect(x => x.Reset());
@@ -780,7 +780,7 @@ namespace Stebs.Model
         /// <summary>
         /// Asserts that if a number is bigger that FF then this is indicated as error
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestNumberTooBig()
         {
             model.Expect(x => x.Reset());
@@ -805,7 +805,7 @@ namespace Stebs.Model
         /// <summary>
         /// Asserts that if there's an even number of quotes, there's no error
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestNoMissingQuote()
         {
             model.Expect(x => x.Reset());
@@ -828,7 +828,7 @@ namespace Stebs.Model
         /// <summary>
         /// Tests that if a quote sign is missing, this leads to an error
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestMissingQuote()
         {
             model.Expect(x => x.Reset());
@@ -853,7 +853,7 @@ namespace Stebs.Model
         /// <summary>
         ///  Ticket #4 Unexpected Token
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestExpectedToken()
         {
             model.Expect(x => x.Reset());
@@ -877,7 +877,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #4 Unexpected Token
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestUnexpectedToken()
         {
             model.Expect(x => x.Reset());
@@ -903,7 +903,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #4 Unexpected Token(with Comma)
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestUnexpectedTokenWithComma()
         {
             this.model.Expect(x => x.Reset());
@@ -930,7 +930,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #4 Unexpected Token(with Comma)
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestUnexpectedTokenWithThreePlusParameters()
         {
             this.model.Expect(x => x.Reset());
@@ -956,7 +956,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ensures that DB accepts String parameters
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestDBStringParamAccepted()
         {
             model.Expect(x => x.Reset());
@@ -976,7 +976,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ensures that DB accepts character as parameter
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestDBCharParamAccepted()
         {
             model.Expect(x => x.Reset());
@@ -995,7 +995,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ensures that DB accepts numbers as parameters
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestDBNumberParamAccepted()
         {
             model.Expect(x => x.Reset());
@@ -1014,7 +1014,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ensures that DB invalid parameter
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestDBNumberParamInvalid()
         {
             model.Expect(x => x.Reset());
@@ -1036,7 +1036,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #14 Dublicate labels are not allowed, Case Sensitive
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelDublicateLabelsNotCaseSensitive()
         {
             model.Expect(x => x.Reset());
@@ -1063,7 +1063,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #24 Negative values not allowed
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelNegativeValues()
         {
             this.model.Expect(x => x.Reset());
@@ -1088,7 +1088,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #29 Test label "End:".
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelEnd()
         {
             this.model.Expect(x => x.Reset());
@@ -1111,7 +1111,7 @@ namespace Stebs.Model
         /// <summary>
         /// Ticket #29 Test label "Halt:".
         /// </summary>
-        [Test]
+        [TestMethod]
         public void TestLabelHalt()
         {
             this.model.Expect(x => x.Reset());
